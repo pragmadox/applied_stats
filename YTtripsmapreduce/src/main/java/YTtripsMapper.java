@@ -14,27 +14,27 @@ public class YTtripsMapper
         throws IOException, InterruptedException 
         {
             String line = value.toString();
-            line = line.replace("\"","");
             String comma = ",";
-            String[] ParsedLine = line.split(comma);
+            String[] parsedLine = line.split(comma);
             
-            //Format date-time beginning of trip.
-            String[] startDateTime = ParsedLine[1].split(" ");
-            String[] startDate = startDateTime[0].split("-");
-            String startYear = startDate[0];
-            String startMonth = startDate[1];
-            String startDay = startDate[2];
-
-            String passengers = ParsedLine[3];
-            String distance = ParsedLine[4];
-            
-            if(ParsedLine.length == 18)
+            if(parsedLine.length == 18)
             {
+                //Format date-time beginning of trip.
+                String start = parsedLine[1].substring(0,10);
+                String[] startDate = start.split("-");
+                String startYear = startDate[0];
+                String startMonth = startDate[1];
+                String startDay = startDate[2];
+
+                String passengers = parsedLine[3];
+                String distance = parsedLine[4];
+           
+            
                 String newKey;
                 double newValue;
 
                 newKey = startYear+"/"+startMonth+"/"+startDay;
-                newValue = Integer.parseInt(ParsedLine[3])*Double.parseDouble(ParsedLine[4]);
+                newValue = Integer.parseInt(parsedLine[3])*Double.parseDouble(parsedLine[4]);
                 context.write(new Text(newKey), new DoubleWritable(newValue));
             }
                 else

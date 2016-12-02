@@ -25,7 +25,7 @@ public class YTtrips
         job.setMapperClass(YTtripsMapper.class);
         job.setReducerClass(YTtripsReducer.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputValueClass(DoubleWritable.class);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }

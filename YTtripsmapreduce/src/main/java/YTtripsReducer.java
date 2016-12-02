@@ -6,17 +6,17 @@ import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 public class YTtripsReducer
-    extends Reducer<Text, IntWritable, Text, Text> 
+    extends Reducer<Text, DoubleWritable, Text, Text> 
     {
     @Override
-        public void reduce(Text key, Iterable<IntWritable> values, Context context)
+        public void reduce(Text key, Iterable<DoubleWritable> values, Context context)
         throws IOException, InterruptedException 
         {
             int count = 0;
             double passengerMiles = 0;
 
             String newValue;
-            for (IntWritable value : values) 
+            for (DoubleWritable value : values) 
             {
                 count++;
 
