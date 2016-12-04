@@ -17,7 +17,7 @@ public class YTtripsMapper
             String comma = ",";
             String[] parsedLine = line.split(comma);
             
-            if(parsedLine.length == 18)
+            if((parsedLine.length == 18)||(parsedLine.length==19))
             {
                 //Format date-time beginning of trip.
                 String start = parsedLine[1].substring(0,10);
@@ -29,15 +29,18 @@ public class YTtripsMapper
                 String passengers = parsedLine[3];
                 String distance = parsedLine[4];
            
-            
-                String newKey;
-                double newValue;
+                if((Integer.parseInt(passengers)<=9) && (Double.parseDouble(distance)<=100))
+                {
+                    String newKey;
+                    double newValue;
 
-                newKey = startYear+"/"+startMonth+"/"+startDay;
-                newValue = Integer.parseInt(parsedLine[3])*Double.parseDouble(parsedLine[4]);
-                context.write(new Text(newKey), new DoubleWritable(newValue));
+                    newKey = startYear+"/"+startMonth+"/"+startDay;
+                    newValue = Integer.parseInt(parsedLine[3])*Double.parseDouble(parsedLine[4]);
+                
+                    context.write(new Text(newKey), new DoubleWritable(newValue));
+                }
+                    else{}
             }
-                else
-                {}
+                else{}
         }
     }

@@ -19,13 +19,11 @@ public class YTtripsReducer
             for (DoubleWritable value : values) 
             {
                 count++;
-
                 passengerMiles = passengerMiles+value.get();
             }
 
             long pmt = Math.round(passengerMiles);
             newValue = String.valueOf(count)+","+String.valueOf(pmt);
             context.write(key, new Text(newValue));
-          
         }
     } 
