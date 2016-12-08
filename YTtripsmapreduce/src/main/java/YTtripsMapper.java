@@ -29,7 +29,7 @@ public class YTtripsMapper
                 String passengers = parsedLine[3];
                 String distance = parsedLine[4];
            
-                if((Integer.parseInt(passengers)<=9) && (Double.parseDouble(distance)<=100))
+                if((Integer.parseInt(passengers)<=9)&&(Integer.parseInt(passengers)>0)&&(Double.parseDouble(distance)<=100)&&(Double.parseDouble(distance)>0))
                 {
                     String newKey;
                     double newValue;
